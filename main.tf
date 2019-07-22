@@ -1,7 +1,7 @@
 provider "aws" {
-  
-        
-    region = "eu-west-1"
+  shared_credentials_file = "home/ec2-user/aws"
+  profile                 = "profile2"
+  region = "eu-west-1"
 }
 terraform {
   backend "local" {
