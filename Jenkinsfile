@@ -17,7 +17,7 @@ pipeline {
     stages {
             stage('TerraformInit'){
             steps {
-                    sh "terraform init --backend-config='access_key=$ACCESS_KEY' ---backend-config='secret_key=$SECRET_KEY' "
+                    sh "terraform init -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' "
                     sh 'terraform --version'
                     sh "echo \$PWD"
                     sh "whoami"
