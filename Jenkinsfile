@@ -10,6 +10,8 @@ pipeline {
 
         TF_IN_AUTOMATION = "true"
         PATH = "$TF_HOME:$PATH"
+        ACCESS_KEY = credentials('ACCESS_KEY')
+        SECRET_KEY = credentials('SECRET_KEY')
         
     }
     stages {
