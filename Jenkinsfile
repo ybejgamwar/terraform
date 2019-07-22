@@ -14,17 +14,19 @@ pipeline {
         SECRET_KEY = credentials('SECRET_KEY')
         
     }
-    stages {
+   stages {
             stage('TerraformInit'){
             steps {
-                    sh "terraform init -var 'access_key=$ACCESS_KEY' -var 'secret_key=$SECRET_KEY' "
-                    sh 'terraform --version'
+                dir('jenkins-terraform-pipeline/ec2_pipeline/'){
+                    sh "terraform init -input=false"
                     sh "echo \$PWD"
                     sh "whoami"
                 }
             }
-	        stage('TerraformPlan'){
+        }
+        stage('TerraformPlan'){
             steps {
+                dir('jenkins-terraform-pipeline/ec2_pipeline/'){
                     script {
                         try {
                             sh "terraform workspace new ${params.WORKSPACE}"
@@ -37,7 +39,8 @@ pipeline {
                     }
                 }
             }
-        stage('TerraformApply'){
+        }
+         stage('TerraformApply'){
             steps {
                 script{
                     def apply = false
@@ -49,10 +52,10 @@ pipeline {
                          currentBuild.result = 'UNSTABLE'
                     }
                     if(apply){
-                        
-                           
-                         unstash "terraform-plan"
+                        dir('jenkins-terraform-pipeline/ec2_pipeline/'){
+                            unstash "terraform-plan"
                             sh 'terraform apply terraform.tfplan'
+                        }
                     }
                 }
             }
