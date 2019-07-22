@@ -17,15 +17,15 @@ pipeline {
    stages {
             stage('TerraformInit'){
             steps {
-                dir('jenkins-terraform-pipeline/ec2_pipeline/'){
+                    sh "terraform init -input=false"
                     sh "echo \$PWD"
                     sh "whoami"
-                }
+                
             }
         }
         stage('TerraformPlan'){
             steps {
-                dir('jenkins-terraform-pipeline/ec2_pipeline/'){
+                
                     script {
                         try {
                             sh "terraform workspace new ${params.WORKSPACE}"
@@ -36,7 +36,7 @@ pipeline {
                         -out terraform.tfplan;echo \$? > status"
                         stash name: "terraform-plan", includes: "terraform.tfplan"
                     }
-                }
+                
             }
         }
          stage('TerraformApply'){
@@ -51,10 +51,10 @@ pipeline {
                          currentBuild.result = 'UNSTABLE'
                     }
                     if(apply){
-                        dir('jenkins-terraform-pipeline/ec2_pipeline/'){
+                        
                             unstash "terraform-plan"
                             sh 'terraform apply terraform.tfplan'
-                        }
+                        
                     }
                 }
             }
