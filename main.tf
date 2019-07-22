@@ -4,6 +4,11 @@ provider "aws" {
   
   
 }
+terraform {
+  backend "local" {
+  }
+  required_version = "0.11.5"
+}
 
 data "aws_ami" "ubuntu" {
   most_recent = true
