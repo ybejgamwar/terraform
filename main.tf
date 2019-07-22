@@ -1,6 +1,6 @@
 provider "aws" {
-  shared_credentials_file = "home/ec2-user/aws"
-  profile                 = "profile2"
+  access_key = ${ACCESS_KEY}
+  secret_key = ${SECRET_KEY}
   region = "eu-west-1"
 }
 terraform {
