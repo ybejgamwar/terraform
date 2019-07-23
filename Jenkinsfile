@@ -1,8 +1,8 @@
-
-pipeline {
-    library identifier: 'test@master', retriever: modernSCM(
+library identifier: 'test@master', retriever: modernSCM(
         [$class: 'GitSCMSource',
          remote: 'https://github.com/ybejgamwar'])
+pipeline {
+    
     agent any
         
     parameters {
