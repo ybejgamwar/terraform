@@ -21,8 +21,11 @@ pipeline {
             steps {
                     sh "terraform init -input=false"
                     sh "echo \$PWD"
-                    sh "whoami"
-                    hello.printHello
+                    sh "whoami" script { 
+                hello.printHello()
+            }
+                
+                    
 
                   
                 
