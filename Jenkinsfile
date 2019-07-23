@@ -22,7 +22,7 @@ pipeline {
                     sh "terraform init -input=false"
                     sh "echo \$PWD"
                     sh "whoami"
-                    hello.printHello()
+                    hello.printHello
 
                   
                 
