@@ -1,6 +1,5 @@
-library identifier: 'test@master', retriever: modernSCM(
-        [$class: 'GitSCMSource',
-         remote: 'https://github.com/ybejgamwar'])
+@Library('my-share-library')
+
 pipeline {
     
     agent any
