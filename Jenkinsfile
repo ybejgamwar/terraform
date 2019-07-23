@@ -1,9 +1,10 @@
 
 pipeline {
-    agent any
-        library identifier: 'test@master', retriever: modernSCM(
+    library identifier: 'test@master', retriever: modernSCM(
         [$class: 'GitSCMSource',
-         remote: 'https://github.com/ybejgamwar/test.git'])
+         remote: 'https://github.com/ybejgamwar'])
+    agent any
+        
     parameters {
         string(name: 'WORKSPACE', defaultValue: 'development', description:'setting up workspace for terraform')
     }
