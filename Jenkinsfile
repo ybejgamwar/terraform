@@ -1,7 +1,9 @@
 
 pipeline {
     agent any
-   
+        library identifier: 'test@master', retriever: modernSCM(
+        [$class: 'GitSCMSource',
+         remote: 'https://github.com/ybejgamwar/test.git'])
     parameters {
         string(name: 'WORKSPACE', defaultValue: 'development', description:'setting up workspace for terraform')
     }
@@ -20,6 +22,9 @@ pipeline {
                     sh "terraform init -input=false"
                     sh "echo \$PWD"
                     sh "whoami"
+                    hello.printHello()
+
+                  
                 
             }
         }
