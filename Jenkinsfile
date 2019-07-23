@@ -24,12 +24,7 @@ pipeline {
                     sh "whoami" script { 
                 hello.printHello()
             }
-                
-                    
-
-                  
-                
-            }
+          }
         }
         stage('TerraformPlan'){
             steps {
